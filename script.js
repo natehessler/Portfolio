@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Customize this data based on your LinkedIn profile
     const name = "Nate Hessler";
     const education = "Business/Marketing from the University of Missouri-St. Louis";
-    const experience = "Full-Stack development, GitHub, VS Code, Heroku, Jira, Zendesk, troubleshooting, debugging, etc";
+    const experience = "Full-Stack development, API's, GitHub, VS Code, Heroku, Jira, Zendesk, troubleshooting, debugging, etc";
     const bootcamp = "Savvy Coders";
 
     nameElement.textContent = name;
