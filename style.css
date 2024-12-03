@@ -78,7 +78,7 @@ section#home {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-section#about, section#portfolio, section#contact {
+section#about, section#experience, section#contact {
     background: rgba(255, 255, 255, 0.8);
     margin: 20px auto;
     border-radius: 15px;
@@ -99,25 +99,25 @@ section a:hover {
     color: #0056a3;
 }
 
-/* Portfolio Projects */
-section#portfolio ul {
+/* Experience */
+section#experience ul {
     list-style: none;
     padding: 0;
 }
 
-section#portfolio ul li {
+section#experience ul li {
     margin: 10px 0;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-section#portfolio ul li a {
+section#experience ul li a {
     color: #00b4d8;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-section#portfolio ul li a:hover {
+section#experience ul li a:hover {
     transform: scale(1.1);
     color: #0077b5;
 }
