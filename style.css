@@ -183,3 +183,40 @@ a, p {
         padding: 2rem 10px;
     }
 }
+
+#quote {
+    background: #f9f9f9;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+blockquote {
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #555;
+    margin: 1rem 0;
+}
+
+blockquote footer {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-top: 1rem;
+}
+
+button#new-quote {
+    padding: 0.5rem 1rem;
+    background: #0077b5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+button#new-quote:hover {
+    background: #005f99;
+}

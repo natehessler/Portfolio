@@ -15,3 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     experienceElement.textContent = experience;
     bootcampElement.textContent = bootcamp;
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const quoteText = document.getElementById('quote-text');
+    const quoteAuthor = document.getElementById('quote-author');
+    const newQuoteButton = document.getElementById('new-quote');
+
+    const fetchQuote = () => {
+        fetch('http://localhost:5000/api/quote')
+            .then(response => response.json())
+            .then(data => {
+                quoteText.textContent = `"${data.text}"`;
+                quoteAuthor.textContent = `- ${data.author}`;
+            })
+            .catch(error => console.error('Error fetching quote:', error));
+    };
+
+    // Fetch a new quote on button click
+    newQuoteButton.addEventListener('click', fetchQuote);
+
+    // Fetch a quote on page load
+    fetchQuote();
+
+});
