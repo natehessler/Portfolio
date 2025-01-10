@@ -7,8 +7,8 @@
 
 /* Variables for Theming */
 :root {
-    --primary-color: #0077b5;
-    --secondary-color: #109e1a;
+    --primary-color: #074364;
+    --secondary-color: #0b5c1a;
     --background-color: #f4f4f9;
     --text-color: #333;
     --white: #fff;
@@ -175,6 +175,21 @@ footer a:hover {
     color: var(--secondary-color);
     transform: scale(1.1);
 }
+
+.github-link {
+    text-decoration: none;
+  }
+  
+  .github-icon {
+    width: 32px; /* Set the icon size */
+    height: 32px;
+    border-radius: 50%; /* Makes the corners fully rounded */
+    transition: transform 0.3s ease; /* Smooth hover animation */
+  }
+  
+  .github-icon:hover {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  }
 
 /* Buttons */
 button#new-quote {
