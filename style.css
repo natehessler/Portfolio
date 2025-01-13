@@ -27,7 +27,7 @@ body {
 
 /* Header */
 header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.85);
     color: var(--primary-color);
     padding: 1rem;
     box-shadow: var(--box-shadow);
@@ -191,6 +191,20 @@ footer a:hover {
     transform: scale(1.2); /* Slightly enlarge the icon on hover */
   }
 
+  .linkedin-link {
+    text-decoration: none;
+  }
+  
+  .linkedin-icon {
+    width: 32px; /* Set the icon size */
+    height: 32px;
+    border-radius: 50%; /* Makes the corners fully rounded */
+    transition: transform 0.3s ease; /* Smooth hover animation */
+  }
+  
+  .linkedin-icon:hover {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  }
 /* Buttons */
 button#new-quote {
     padding: 0.8rem 1.2rem;
