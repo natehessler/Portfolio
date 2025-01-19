@@ -11,6 +11,7 @@ const quotes = [
     { author: "Helen Keller", text: "The only thing worse than being blind is having sight but no vision." },
     { author: "Walt Disney", text: "The way to get started is to quit talking and begin doing." },
     { author: "Nate Hessler", text: "These people have much better quotes than me." },
+    { author: "Albert Einstein", text: "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."},
 ];
 
 app.get('/api/quote', (req, res) => {
