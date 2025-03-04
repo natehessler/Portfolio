@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (quoteText && quoteAuthor && newQuoteButton) {
         const fetchQuote = () => {
-            fetch('http://localhost:5000/api/quote')
+            fetch('http://localhost:5050/api/quote')
                 .then(response => response.json())
                 .then(data => {
                     quoteText.textContent = `"${data.text}"`;

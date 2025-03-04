@@ -21,7 +21,7 @@ app.get('/api/quote', (req, res) => {
     res.json(quotes[randomIndex]);
 });
 
-const PORT = 5000;
+const PORT = 5050;
 app.listen(PORT, () => {
     console.log(`Quote API is running on http://localhost:${PORT}`);
 });
