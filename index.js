@@ -13,6 +13,7 @@ const quotes = [
     { author: "Nate Hessler", text: "These people have much better quotes than me." },
     { author: "Albert Einstein", text: "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."},
     { author: "Bob Marley", text: "You never know how strong you are until being strong is your only choice."},
+    { author: "Steve Jobs", text: "Your time is limited, so don't waste it living someone else's life."},
 ];
 
 app.get('/api/quote', (req, res) => {
