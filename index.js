@@ -12,6 +12,7 @@ const quotes = [
     { author: "Walt Disney", text: "The way to get started is to quit talking and begin doing." },
     { author: "Nate Hessler", text: "These people have much better quotes than me." },
     { author: "Albert Einstein", text: "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."},
+    { author: "Bob Marley", text: "You never know how strong you are until being strong is your only choice."},
 ];
 
 app.get('/api/quote', (req, res) => {
