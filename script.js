@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(data => {
                     quoteText.textContent = `"${data.text}"`;
                     quoteAuthor.textContent = `- ${data.author}`;
+                    quoteText.classList.add('fade-in');
+                    quoteAuthor.classList.add('fade-in');
+                    setTimeout(() => {
+                        quoteText.classList.remove('fade-in');
+                        quoteAuthor.classList.remove('fade-in');
+                    }, 1000);
                 })
                 .catch(error => console.error('Error fetching quote:', error));
         };

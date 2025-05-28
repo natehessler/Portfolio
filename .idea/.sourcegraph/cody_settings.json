@@ -1,3 +1,11 @@
 {
-  
+  "cody" : {
+    "advanced.agent.process.node": {
+      "args": ["--max-old-space-size=4096", "--trace-warnings"],
+      "env": {
+        "NODE_OPTIONS": "--max-http-header-size=16384",
+        "NODE_DEBUG": "http*"
+      }
+    }
+  }
 }

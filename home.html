@@ -33,7 +33,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Nate Hessler</p>
+            <p>&copy; <span id="currentYear"></span> Nate Hessler</p>
             <a href="https://www.linkedin.com/in/natehessler" target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" class="linkedin-icon">
               </a>
@@ -44,5 +44,9 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Set the current year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
