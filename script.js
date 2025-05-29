@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Populate portfolio information
     const nameElement = document.getElementById('name');
     const educationElement = document.getElementById('education');
-    const experienceElement = document.getElementById('experience');
+    const experienceTextElement = document.getElementById('experience-text');
     const bootcampElement = document.getElementById('bootcamp');
 
     const name = "Nate Hessler";
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (nameElement) nameElement.textContent = name;
     if (educationElement) educationElement.textContent = education;
-    if (experienceElement) experienceElement.textContent = experience;
+    if (experienceTextElement) experienceTextElement.textContent = experience;
     if (bootcampElement) bootcampElement.textContent = bootcamp;
 
     // Quote fetching functionality
