@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
         { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
         { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
-        { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb" },
         { text: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
         { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
         { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
