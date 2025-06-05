@@ -7,8 +7,11 @@
 
 /* Variables for Theming */
 :root {
+    /* Game page styles */
+    --game-button-bg: #4CAF50;
+    --game-button-hover: #45a049;
     --primary-color: #074364;
-    --secondary-color: #0b5c1a;
+    --secondary-color: #c53209;
     --background-color: #f4f4f9;
     --text-color: #333;
     --white: #fff;
@@ -293,6 +296,39 @@ button#new-quote:hover {
     100% {
         opacity: 1;
     }
+}
+
+/* Game page styles */
+.game-wrapper {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.game-button {
+    background-color: var(--game-button-bg);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.game-button:hover {
+    background-color: var(--game-button-hover);
+}
+
+.game-instructions {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border-left: 4px solid var(--primary-color);
 }
 
 /* Responsive Design */
