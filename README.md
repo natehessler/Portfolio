@@ -8,7 +8,7 @@ A personal portfolio website showcasing my technical skills, background, and exp
 - Interactive navigation between different sections
 - Dynamic content population using JavaScript
 - Client-side random inspirational quotes generator
-- Interactive Snake game built with JavaScript
+- Projects showcase with GitHub repository links
 - Links to professional profiles (LinkedIn, GitHub)
 
 ## Technologies Used
@@ -24,8 +24,8 @@ A personal portfolio website showcasing my technical skills, background, and exp
 ### Quote Generator
 The portfolio includes a client-side quote generator that displays random inspirational quotes without requiring a server connection.
 
-### Snake Game
-A JavaScript-based Snake game that runs directly in the browser. Control the snake with arrow keys to collect food and grow.
+### Projects Showcase
+A comprehensive display of GitHub repositories featuring diverse projects including AI/ML tools, web applications, system monitoring tools, and full-stack development projects.
 
 ## Setup and Installation
 
@@ -46,7 +46,7 @@ A JavaScript-based Snake game that runs directly in the browser. Control the sna
 - `skills.html` - Overview of technical skills
 - `experience.html` - Work experience and projects
 - `contact.html` - Contact information and quote generator
-- `game.html` - Interactive Snake game
+- `projects.html` - Projects showcase with GitHub repository links
 - `script.js` - Client-side JavaScript functionality
 - `index.js` - JavaScript utilities (no longer required)
 - `style.css` - Styling for the portfolio
