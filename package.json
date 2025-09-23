@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "npx http-server -p 3000 -o"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,5 @@
     "url": "https://github.com/natehessler/Portfolio/issues"
   },
   "homepage": "https://github.com/natehessler/Portfolio#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.1"
-  }
+  "dependencies": {}
 }
