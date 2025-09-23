@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const name = "Nate Hessler";
     const education = "Business/Marketing from the University of Missouri-St. Louis";
-    const experience = "Full-Stack development, API's, GitHub, VS Code, Heroku, Jira, Zendesk, troubleshooting, debugging, etc";
+    const experience = "software + support engineering";
     const bootcamp = "Savvy Coders";
 
     if (nameElement) nameElement.textContent = name;
