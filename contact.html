@@ -31,12 +31,43 @@
                 </a>
                 <div class="profile-content">
                     <h2>Get In Touch</h2>
+                    <p><a href="tel:6364435510">(636) 443-5510</a> call or text</p>
                     <p><a href="mailto:natehessler@gmail.com">natehessler@gmail.com</a></p>
                     <p><a href="https://www.linkedin.com/in/natehessler" target="_blank">LinkedIn</a></p>
-                    <p><a href="https://github.com/natehessler/Portfolio" target="_blank">GitHub</a></p>
+                    <p><a href="https://github.com/natehessler" target="_blank">GitHub</a></p>
                 </div>
             </div>
         </div>
+        
+        <section id="weather">
+            <div class="container">
+                <h2>Current Weather</h2>
+                <div id="weather-widget">
+                    <div id="weather-loading">Loading weather...</div>
+                    <div id="weather-content" style="display: none;">
+                        <div class="weather-info">
+                            <div class="weather-main">
+                                <span id="weather-temp"></span>
+                                <span id="weather-desc"></span>
+                            </div>
+                            <div class="weather-details">
+                                <div class="weather-location">
+                                    <span id="weather-location"></span>
+                                </div>
+                                <div class="weather-extra">
+                                    <span id="weather-humidity"></span>
+                                    <span id="weather-wind"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="weather-error" style="display: none;">
+                        <p>Unable to load weather data. Please check your location permissions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section id="quote">
     <div class="container">
         <h2>Inspirational Quote</h2>
@@ -66,6 +97,74 @@
     <script>
         // Set the current year in the footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Weather API functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const weatherLoading = document.getElementById('weather-loading');
+            const weatherContent = document.getElementById('weather-content');
+            const weatherError = document.getElementById('weather-error');
+            
+            // OpenWeatherMap API key (free tier)
+            const API_KEY = 'dca1b22e6c32e913e1a6204a66239cae'; // You'll need to get a free API key from OpenWeatherMap
+            const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+            
+            function getWeatherByLocation(lat, lon) {
+                const url = `${API_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.cod === 200) {
+                            displayWeather(data);
+                        } else {
+                            showWeatherError();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Weather API error:', error);
+                        showWeatherError();
+                    });
+            }
+            
+            function displayWeather(data) {
+                const temp = Math.round(data.main.temp);
+                const desc = data.weather[0].description;
+                const location = `${data.name}, ${data.sys.country}`;
+                const humidity = data.main.humidity;
+                const windSpeed = Math.round(data.wind.speed);
+                
+                document.getElementById('weather-temp').textContent = `${temp}°F`;
+                document.getElementById('weather-desc').textContent = desc;
+                document.getElementById('weather-location').textContent = location;
+                document.getElementById('weather-humidity').textContent = `Humidity: ${humidity}%`;
+                document.getElementById('weather-wind').textContent = `Wind: ${windSpeed} mph`;
+                
+                weatherLoading.style.display = 'none';
+                weatherContent.style.display = 'block';
+            }
+            
+            function showWeatherError() {
+                weatherLoading.style.display = 'none';
+                weatherError.style.display = 'block';
+            }
+            
+            // Get user's location and fetch weather
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        getWeatherByLocation(lat, lon);
+                    },
+                    function(error) {
+                        console.error('Geolocation error:', error);
+                        showWeatherError();
+                    }
+                );
+            } else {
+                showWeatherError();
+            }
+        });
     </script>
 </body>
 </html>
