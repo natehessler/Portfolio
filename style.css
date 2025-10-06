@@ -522,43 +522,6 @@ footer a:hover::after {
     opacity: 1;
 }
 
-
-/* Buttons */
-button#new-quote {
-    padding: 1rem 2rem;
-    background: var(--gradient-accent);
-    color: var(--text-primary);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-light);
-    position: relative;
-    overflow: hidden;
-}
-
-button#new-quote::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-button#new-quote:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-dark);
-}
-
-button#new-quote:hover::before {
-    left: 100%;
-}
-
 /* Animations */
 @keyframes fadeInDown {
     0% {
@@ -743,55 +706,6 @@ h3 {
 p {
     color: var(--text-secondary);
     line-height: 1.8;
-}
-
-/* Quote Section Styling */
-#quote {
-    background: var(--gradient-card);
-    border-radius: 20px;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 800px;
-    box-shadow: var(--shadow-dark);
-    border: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
-}
-
-#quote::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-accent);
-}
-
-#quote h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-}
-
-#quote blockquote {
-    text-align: center;
-    margin: 2rem 0;
-    position: relative;
-}
-
-#quote blockquote p {
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-#quote blockquote footer {
-    color: var(--text-muted);
-    font-size: 1rem;
-    font-weight: 600;
 }
 
 /* Scrollbar Styling */
@@ -1046,5 +960,178 @@ p {
     .weather-extra {
         flex-direction: row;
         justify-content: space-around;
+    }
+}
+
+/* NFL Schedule Widget Styles */
+#nfl-schedule {
+    background: var(--gradient-card);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow-dark);
+    border: 1px solid var(--border-color);
+}
+
+#nfl-schedule h2 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#nfl-widget {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#nfl-loading {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 2rem;
+}
+
+#nfl-error {
+    text-align: center;
+    color: var(--highlight-color);
+    padding: 2rem;
+    background: rgba(233, 69, 96, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+#nfl-games-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.nfl-game-card {
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.nfl-game-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-dark);
+    border-color: var(--highlight-color);
+}
+
+.nfl-game-card.live {
+    border-color: var(--highlight-color);
+    animation: glow 2s ease-in-out infinite;
+}
+
+.nfl-game-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nfl-game-time {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.nfl-game-status {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    background: var(--background-card);
+    text-align: center;
+}
+
+.nfl-game-status.live {
+    color: var(--highlight-color);
+    background: rgba(233, 69, 96, 0.2);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.nfl-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nfl-team {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.nfl-team:hover {
+    background: rgba(15, 52, 96, 0.3);
+}
+
+.nfl-team-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nfl-team-score {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.nfl-team.winner .nfl-team-name,
+.nfl-team.winner .nfl-team-score {
+    color: var(--highlight-color);
+}
+
+/* Responsive NFL Widget */
+@media (max-width: 1200px) {
+    #nfl-games-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    #nfl-games-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #nfl-schedule {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    #nfl-schedule h2 {
+        font-size: 1.5rem;
+    }
+    
+    .nfl-game-card {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #nfl-games-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .nfl-team-name {
+        font-size: 1rem;
+    }
+    
+    .nfl-team-score {
+        font-size: 1.2rem;
     }
 }

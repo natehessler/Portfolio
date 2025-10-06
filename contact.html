@@ -68,17 +68,20 @@
             </div>
         </section>
         
-        <section id="quote">
-    <div class="container">
-        <h2>Inspirational Quote</h2>
-        <blockquote>
-            <p id="quote-text">"Click the button to get inspired!"</p>
-            <footer id="quote-author">- Author</footer>
-        </blockquote>
-        <br>
-        <button id="new-quote">Get New Quote</button>
-    </div>
-</section>
+        <section id="nfl-schedule">
+            <div class="container">
+                <h2 id="nfl-week-header">NFL Schedule & Live Scores</h2>
+                <div id="nfl-widget">
+                    <div id="nfl-loading">Loading NFL data...</div>
+                    <div id="nfl-content" style="display: none;">
+                        <div id="nfl-games-list"></div>
+                    </div>
+                    <div id="nfl-error" style="display: none;">
+                        <p>Unable to load NFL data. Please try again later.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 </section>
 
     <footer>
@@ -94,6 +97,139 @@
     </footer>
     <script src="script.js"></script>
     <script>
+        // NFL Schedule and Live Scores functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const nflLoading = document.getElementById('nfl-loading');
+            const nflContent = document.getElementById('nfl-content');
+            const nflError = document.getElementById('nfl-error');
+            const nflGamesList = document.getElementById('nfl-games-list');
+            const nflWeekHeader = document.getElementById('nfl-week-header');
+            
+            // Calculate current NFL week
+            // NFL 2025 season Week 1 starts Sep 4, 2025 (Thursday)
+            // Each week runs Thursday-Monday
+            function getCurrentNFLWeek() {
+                const today = new Date();
+                const seasonStart = new Date('2025-09-04'); // Week 1 Thursday
+                
+                // Calculate days since season start
+                const daysDiff = Math.floor((today - seasonStart) / (1000 * 60 * 60 * 24));
+                
+                // Each week is 7 days (Thu-Wed), but Tuesday is when we switch to next week
+                // Tuesday (day 5 of week) we show next week's games
+                const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon, 2=Tue, etc.
+                
+                let weekNum = Math.floor(daysDiff / 7) + 1;
+                
+                // If it's Tuesday (2) or Wednesday (3), show next week
+                if (dayOfWeek === 2 || dayOfWeek === 3) {
+                    weekNum += 1;
+                }
+                
+                // Cap at Week 18 (regular season)
+                return Math.min(Math.max(weekNum, 1), 18);
+            }
+            
+            function fetchNFLSchedule() {
+                const currentWeek = getCurrentNFLWeek();
+                const url = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2025&seasontype=2&week=${currentWeek}`;
+                
+                // Update header with week number
+                nflWeekHeader.textContent = `NFL Week ${currentWeek} - Schedule & Live Scores`;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.events && data.events.length > 0) {
+                            displayNFLGames(data.events);
+                        } else {
+                            nflLoading.style.display = 'none';
+                            nflGamesList.innerHTML = `<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No NFL games scheduled for Week ${currentWeek}.</p>`;
+                            nflContent.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('NFL API error:', error);
+                        showNFLError();
+                    });
+            }
+            
+            function displayNFLGames(games) {
+                nflGamesList.innerHTML = '';
+                
+                games.forEach(game => {
+                    const competition = game.competitions[0];
+                    const homeTeam = competition.competitors.find(team => team.homeAway === 'home');
+                    const awayTeam = competition.competitors.find(team => team.homeAway === 'away');
+                    const status = game.status;
+                    
+                    // Determine if game is live
+                    const isLive = status.type.state === 'in';
+                    const isFinal = status.type.state === 'post';
+                    
+                    // Format date/time
+                    let gameTime = '';
+                    if (isLive) {
+                        gameTime = status.type.detail;
+                    } else {
+                        const gameDate = new Date(game.date);
+                        gameTime = gameDate.toLocaleString('en-US', { 
+                            weekday: 'short',
+                            month: 'short', 
+                            day: 'numeric',
+                            hour: 'numeric', 
+                            minute: '2-digit',
+                            hour12: true 
+                        });
+                    }
+                    
+                    // Determine winner
+                    const homeScore = parseInt(homeTeam.score);
+                    const awayScore = parseInt(awayTeam.score);
+                    const homeWinner = isFinal && homeScore > awayScore;
+                    const awayWinner = isFinal && awayScore > homeScore;
+                    
+                    const gameCard = document.createElement('div');
+                    gameCard.className = `nfl-game-card ${isLive ? 'live' : ''}`;
+                    gameCard.innerHTML = `
+                        <div class="nfl-game-header">
+                            <div class="nfl-game-time">${gameTime}</div>
+                            <div class="nfl-game-status ${isLive ? 'live' : ''}">${isLive ? '🔴 LIVE' : (isFinal ? 'Final' : 'Scheduled')}</div>
+                        </div>
+                        <div class="nfl-teams">
+                            <div class="nfl-team ${awayWinner ? 'winner' : ''}">
+                                <span class="nfl-team-name">${awayTeam.team.shortDisplayName}</span>
+                                <span class="nfl-team-score">${awayTeam.score}</span>
+                            </div>
+                            <div class="nfl-team ${homeWinner ? 'winner' : ''}">
+                                <span class="nfl-team-name">${homeTeam.team.shortDisplayName}</span>
+                                <span class="nfl-team-score">${homeTeam.score}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    nflGamesList.appendChild(gameCard);
+                });
+                
+                nflLoading.style.display = 'none';
+                nflContent.style.display = 'block';
+                
+                // Auto-refresh every 30 seconds if there are live games
+                const hasLiveGames = games.some(game => game.status.type.state === 'in');
+                if (hasLiveGames) {
+                    setTimeout(fetchNFLSchedule, 30000);
+                }
+            }
+            
+            function showNFLError() {
+                nflLoading.style.display = 'none';
+                nflError.style.display = 'block';
+            }
+            
+            // Fetch NFL schedule on page load
+            fetchNFLSchedule();
+        });
+        
         // Weather API functionality
         document.addEventListener('DOMContentLoaded', function() {
             const weatherLoading = document.getElementById('weather-loading');
