@@ -3,17 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameElement = document.getElementById('name');
     const educationElement = document.getElementById('education');
     const experienceTextElement = document.getElementById('experience-text');
-    const bootcampElement = document.getElementById('bootcamp');
 
     const name = "Nate Hessler";
     const education = "Business/Marketing from the University of Missouri-St. Louis";
     const experience = "software + support engineering";
-    const bootcamp = "Savvy Coders";
 
     if (nameElement) nameElement.textContent = name;
     if (educationElement) educationElement.textContent = education;
     if (experienceTextElement) experienceTextElement.textContent = experience;
-    if (bootcampElement) bootcampElement.textContent = bootcamp;
+    
+    // Set current year in footer
+    const currentYearElement = document.getElementById('currentYear');
+    if (currentYearElement) currentYearElement.textContent = new Date().getFullYear();
 
     // Quote functionality with local quotes (no API required)
     const quoteText = document.getElementById('quote-text');
