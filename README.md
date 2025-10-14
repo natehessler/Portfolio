@@ -21,8 +21,6 @@ A personal portfolio website showcasing my technical skills, background, and exp
 
 ## Features Details
 
-### Quote Generator
-The portfolio includes a client-side quote generator that displays random inspirational quotes without requiring a server connection.
 
 ### Projects Showcase
 A comprehensive display of GitHub repositories featuring diverse projects including AI/ML tools, web applications, system monitoring tools, and full-stack development projects.
