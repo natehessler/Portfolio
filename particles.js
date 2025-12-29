@@ -6,6 +6,8 @@ class ParticleBackground {
         this.particles = [];
         this.particleCount = 80;
         this.mouse = { x: null, y: null, radius: 150 };
+        this.isVisible = true;
+        this.animationId = null;
         
         this.init();
     }
@@ -31,6 +33,20 @@ class ParticleBackground {
         window.addEventListener('mousemove', (e) => {
             this.mouse.x = e.x;
             this.mouse.y = e.y;
+        });
+        
+        // Pause animation when tab is not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.isVisible = false;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
+                }
+            } else {
+                this.isVisible = true;
+                this.animate();
+            }
         });
     }
     
@@ -110,8 +126,9 @@ class ParticleBackground {
     }
     
     animate() {
+        if (!this.isVisible) return;
         this.drawParticles();
-        requestAnimationFrame(() => this.animate());
+        this.animationId = requestAnimationFrame(() => this.animate());
     }
 }
 

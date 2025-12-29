@@ -56,30 +56,6 @@ class ScrollAnimations {
     }
 }
 
-// Typing animation for code snippets
-class TypingAnimation {
-    constructor(element, text, speed = 50) {
-        this.element = element;
-        this.text = text;
-        this.speed = speed;
-        this.index = 0;
-    }
-    
-    type() {
-        if (this.index < this.text.length) {
-            this.element.textContent += this.text.charAt(this.index);
-            this.index++;
-            setTimeout(() => this.type(), this.speed);
-        }
-    }
-    
-    start() {
-        this.element.textContent = '';
-        this.index = 0;
-        this.type();
-    }
-}
-
 // Custom cursor effect
 class CustomCursor {
     constructor() {
